@@ -9,14 +9,16 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     // central widget for mainWindow
-    QWidget *centralWgt;
+    QWidget *centralWgt = NULL;
     // Layout and Buttons for main menu
-    QVBoxLayout *pVlayout;
-    QPushButton *pStartBtn;
-    QPushButton *pAddQuestionsBtn;
-    QPushButton *pDelQuestionsBtn;
-    QPushButton *pStatisticsBtn;
+    QVBoxLayout *pVLayoutMain = NULL;
+    QPushButton *pStartBtn = NULL;
+    QPushButton *pAddQuestionsBtn = NULL;
+    QPushButton *pDelQuestionsBtn = NULL;
+    QPushButton *pStatisticsBtn = NULL;
 
+    bool initStartMenu();
+    void showStartMenu();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
