@@ -10,11 +10,11 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainmenulayout.cpp \
+    mainmenuwgt.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    mainmenulayout.h \
+    mainmenuwgt.h \
     mainwindow.h
 
 # Default rules for deployment.

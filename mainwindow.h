@@ -3,18 +3,15 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
-#include "mainmenulayout.h"
+#include "mainmenuwgt.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-private:
-    // Central widget for mainWindow
-    QWidget *centralWgt = nullptr;
-    // Layout for main menu
-    MainMenuLayout *pMainMenuLayout = nullptr;
+private:  
+    MainMenuWgt *pMainMenuWgt = nullptr; // Layout for main menu
 
-    void showStartMenu();
+    void setStartMenuWgt();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
