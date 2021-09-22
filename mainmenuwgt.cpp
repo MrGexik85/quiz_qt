@@ -63,6 +63,7 @@ bool MainMenuWgt::initLayout() {
         return false;
     }
 
+
     pLayout->addWidget(pStartBtn);
     pLayout->addWidget(pAddQuestionsBtn);
     pLayout->addWidget(pDelQuestionsBtn);
