@@ -9,7 +9,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:  
-    MainMenuWgt *pMainMenuWgt = nullptr; // Layout for main menu
+    MainMenuWgt *pMainMenuWgt = nullptr;
 
     void setStartMenuWgt();
 public:

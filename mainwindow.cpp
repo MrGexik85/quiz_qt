@@ -3,10 +3,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    /*
-    * Constructor for mainWindow
-    */
-
     qDebug("Start constructor main window");
 
     setStartMenuWgt();
@@ -16,27 +12,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    /*
-    * Destructor for mainWindow
-    */
-
     qDeleteAll(this->children());
     qDebug("mainWindow: Succes destructor");
 }
 
 void MainWindow::setStartMenuWgt() {
     /*
-    *   Set start menu on main window
-    *
-    *   create mainMenu widget, connect signals to slots,
+    *   Create mainMenu widget, connect signals to slots,
     *   set to central widget of main window
     *
     *   return: void
     */
 
     qDebug("mainWindow: start set start main menu");
-    pMainMenuWgt = new MainMenuWgt(); // Init central widget
-    this->setCentralWidget(pMainMenuWgt); // set central widget to MainWindow
+    pMainMenuWgt = new MainMenuWgt();
+    this->setCentralWidget(pMainMenuWgt);
 
     connect(pMainMenuWgt->pStartBtn, SIGNAL(clicked()), this, SLOT(onStartClicked()));
     connect(pMainMenuWgt->pAddQuestionsBtn, SIGNAL(clicked()), this, SLOT(onAddClicked()));
