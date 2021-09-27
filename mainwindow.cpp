@@ -3,17 +3,15 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    qDebug("Start constructor main window");
-
     setStartMenuWgt();
 
-    qDebug("mainWindow: success constructor");
+    qDebug("mainWindow(constructor): Success");
 }
 
 MainWindow::~MainWindow()
 {
     qDeleteAll(this->children());
-    qDebug("mainWindow: Succes destructor");
+    qDebug("mainWindow(destrucor): Succes");
 }
 
 void MainWindow::setStartMenuWgt() {
@@ -23,8 +21,6 @@ void MainWindow::setStartMenuWgt() {
     *
     *   return: void
     */
-
-    qDebug("mainWindow: start set start main menu");
     pMainMenuWgt = new MainMenuWgt();
     this->setCentralWidget(pMainMenuWgt);
 
@@ -33,8 +29,10 @@ void MainWindow::setStartMenuWgt() {
     connect(pMainMenuWgt->pDelQuestionsBtn, SIGNAL(clicked()), this, SLOT(onDelClicked()));
     connect(pMainMenuWgt->pStatisticsBtn, SIGNAL(clicked()), this, SLOT(onStatisticsClicked()));
 
-    qDebug("mainWindow: success set start main menu");
+    qDebug("mainWindow(setStartMenuWgt): Success");
 }
+
+/* SLOTS */
 
 void MainWindow::onStartClicked(){
     /*
@@ -42,7 +40,7 @@ void MainWindow::onStartClicked(){
     *   show window with quiz
     */
 
-    qDebug("mainWindow: Start btn clicked");
+    qDebug("mainWindow(onStartClicked): Start btn clicked");
 }
 
 void MainWindow::onAddClicked(){
@@ -51,7 +49,7 @@ void MainWindow::onAddClicked(){
     *   show window with funcs to add some questions
     */
 
-    qDebug("mainWindow: Add btn clicked");
+    qDebug("mainWindow(onAddClicked): Add btn clicked");
 }
 
 void MainWindow::onDelClicked(){
@@ -60,7 +58,7 @@ void MainWindow::onDelClicked(){
     *   show window with funcs to delete some questions
     */
 
-    qDebug("mainWindow: Del btn clicked");
+    qDebug("mainWindow(onDelClicked): Del btn clicked");
 }
 
 void MainWindow::onStatisticsClicked(){
@@ -69,6 +67,6 @@ void MainWindow::onStatisticsClicked(){
     *   show window with user's statistics at quiz
     */
 
-    qDebug("mainWindow: Statistics btn clicked");
+    qDebug("mainWindow(onStatisticsClicked): Statistics btn clicked");
 }
 

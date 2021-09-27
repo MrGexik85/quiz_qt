@@ -7,12 +7,12 @@ MainMenuWgt::MainMenuWgt(QWidget *parent) : QWidget(parent)
 
     this->setLayout(pLayout);
 
-    qDebug("mainMenuWgt: success constructor");
+    qDebug("mainMenuWgt(constructor): Success");
 }
 
 MainMenuWgt::~MainMenuWgt() {
     qDeleteAll(this->children());
-    qDebug("mainMenuWgt: success destructor");
+    qDebug("mainMenuWgt(destructor): Success");
 }
 
 bool MainMenuWgt::initButtons() {
@@ -21,9 +21,6 @@ bool MainMenuWgt::initButtons() {
     *
     *   return: bool (success)
     */
-
-    qDebug("mainMenuWgt: start init buttons");
-
     pStartBtn = new QPushButton("Начать тест");
     pAddQuestionsBtn = new QPushButton("Добавить вопросы");
     pDelQuestionsBtn = new QPushButton("Удалить вопросы");
@@ -31,11 +28,11 @@ bool MainMenuWgt::initButtons() {
 
     // If some of buttons dont create
     if(!(pStartBtn && pAddQuestionsBtn && pDelQuestionsBtn && pStatisticsBtn)){
-        qDebug("mainMenuWgt: fail init buttons");
+        qDebug("mainMenuWgt(initButtons): Some button was not init");
         return false;
     }
 
-    qDebug("mainMenuWgt: success init buttons");
+    qDebug("mainMenuWgt(initButtons): Success init buttons");
     return true;
 }
 
@@ -45,12 +42,9 @@ bool MainMenuWgt::initLayout() {
     *
     *   return: bool (success)
     */
-
-    qDebug("mainMenuWgt: start init layout");
-
     pLayout = new QVBoxLayout();
     if(pLayout == nullptr) {
-        qDebug("mainMenuWgt: fail to init layout");
+        qDebug("mainMenuWgt(initLayout): Layout was not init");
         return false;
     }
 
@@ -59,6 +53,6 @@ bool MainMenuWgt::initLayout() {
     pLayout->addWidget(pDelQuestionsBtn);
     pLayout->addWidget(pStatisticsBtn);
 
-    qDebug("mainMenuWgt: success init layout");
+    qDebug("mainMenuWgt(initLayout): Success init layout");
     return true;
 }
