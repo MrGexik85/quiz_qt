@@ -1,0 +1,16 @@
+<body>
+    <question>
+        <content>Военмех что???</content>
+        <answer right="false">Хуже всех</answer>
+        <answer right="true">Лучше всех</answer>
+        <answer right="false">Надежнее всех</answer>
+        <answer right="false">Балдежнее всех</answer>
+    </question>
+    <question>
+        <content>Загадка Жака Фреско: зачем?</content>
+        <answer right="false">Затем</answer>
+        <answer right="false">А кто спрашивает</answer>
+        <answer right="true">Так надо</answer>
+        <answer right="false">По воле бога</answer>
+    </question>
+</body>
