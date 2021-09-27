@@ -21,7 +21,7 @@ void MainWindow::setStartMenuWgt() {
     *
     *   return: void
     */
-    pMainMenuWgt = new MainMenuWgt();
+    pMainMenuWgt = new MainMenuWgt(this);
     this->setCentralWidget(pMainMenuWgt);
 
     connect(pMainMenuWgt->pStartBtn, SIGNAL(clicked()), this, SLOT(onStartClicked()));

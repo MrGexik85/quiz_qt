@@ -21,10 +21,10 @@ bool MainMenuWgt::initButtons() {
     *
     *   return: bool (success)
     */
-    pStartBtn = new QPushButton("Начать тест");
-    pAddQuestionsBtn = new QPushButton("Добавить вопросы");
-    pDelQuestionsBtn = new QPushButton("Удалить вопросы");
-    pStatisticsBtn = new QPushButton("Посмотреть статистику");
+    pStartBtn = new QPushButton("Начать тест", this);
+    pAddQuestionsBtn = new QPushButton("Добавить вопросы", this);
+    pDelQuestionsBtn = new QPushButton("Удалить вопросы", this);
+    pStatisticsBtn = new QPushButton("Посмотреть статистику", this);
 
     // If some of buttons dont create
     if(!(pStartBtn && pAddQuestionsBtn && pDelQuestionsBtn && pStatisticsBtn)){
