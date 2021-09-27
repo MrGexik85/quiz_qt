@@ -66,7 +66,15 @@ void MainWindow::onStatisticsClicked(){
     *   Action for statistics button clicked
     *   show window with user's statistics at quiz
     */
-
     qDebug("mainWindow(onStatisticsClicked): Statistics btn clicked");
+
+    pStatisticsWgt = new StatisticsWgt(this);
+    if(pStatisticsWgt == nullptr) {
+        qDebug("mainWindow(onStatisticsClicked): fail to init Statistics widget");
+        return;
+    }
+
+    this->setCentralWidget(pStatisticsWgt);
+    delete pMainMenuWgt;
 }
 
