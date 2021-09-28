@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    qDeleteAll(this->children());
+    //qDeleteAll(this->children());
     qDebug("mainWindow(destrucor): Succes");
 }
 
