@@ -3,7 +3,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    statsFile = "stats.json";
+    statsFile = "stat.json";
     questionsFile = "questions.xml";
 
     // Check stats and questions files are exist
@@ -100,11 +100,12 @@ void MainWindow::onStatisticsClicked(){
     */
     qDebug("mainWindow(onStatisticsClicked): Statistics btn clicked");
 
-    pStatisticsWgt = new StatisticsWgt(this);
+    pStatisticsWgt = new StatisticsWgt(this, statsFile);
     if(pStatisticsWgt == nullptr) {
         qDebug("mainWindow(onStatisticsClicked): fail to init Statistics widget");
         return;
     }
+    connect(pStatisticsWgt, SIGNAL(backEvent()), this, SLOT(setMainMenu()));
 
     this->setCentralWidget(pStatisticsWgt);
     delete pMainMenuWgt;
