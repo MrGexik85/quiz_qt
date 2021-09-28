@@ -111,3 +111,9 @@ void MainWindow::onStatisticsClicked(){
     delete pMainMenuWgt;
 }
 
+void MainWindow::setMainMenu() {
+    QWidget *tmp = this->centralWidget();
+    setStartMenuWgt();
+    delete tmp;
+}
+

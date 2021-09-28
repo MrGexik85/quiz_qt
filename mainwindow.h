@@ -33,5 +33,7 @@ private slots:
     void onAddClicked();
     void onDelClicked();
     void onStatisticsClicked();
+
+    void setMainMenu();
 };
 #endif // MAINWINDOW_H
