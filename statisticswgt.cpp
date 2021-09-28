@@ -107,12 +107,13 @@ QTableWidget* StatisticsWgt::getTable() {
     QStringList labels = getLabelsFromFile(json["labels"].toArray());
     QVector<QStringList> data = getDataFromFile(json["stats"].toArray());
 
-    QTableWidget *table = new QTableWidget(0,2,this);
+    QTableWidget *table = new QTableWidget(0, labels.size(), this);
     for(int i = 0; i < data.count(); i++) {
         table->insertRow(i);
-        table->setItem(i, 0, new QTableWidgetItem(data[i].at(0)));
-        table->setItem(i, 1, new QTableWidgetItem(data[i].at(1)));
-        qDebug("set info from vector");
+        for(int j = 0; j < data[i].size(); j++){
+            table->setItem(i, j, new QTableWidgetItem(data[i].at(j)));
+        }
+        qDebug() << "statisticsWgt(getTable): insert item in table:" << data[i];
     }
     table->setHorizontalHeaderLabels(labels);
 
