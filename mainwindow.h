@@ -19,7 +19,11 @@ private:
     DelQuestionWgt *pDelQuestionWgt = nullptr;
     StatisticsWgt *pStatisticsWgt = nullptr;
 
+    QString statsFile;
+    QString questionsFile;
+
     void setStartMenuWgt();
+    bool checkFilesExistOrCreate(QString &path_file);
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

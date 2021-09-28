@@ -8,7 +8,7 @@ class StatisticsWgt : public QWidget
     Q_OBJECT
 public:
     explicit StatisticsWgt(QWidget *parent = nullptr);
-
+    ~StatisticsWgt();
 signals:
 
 };

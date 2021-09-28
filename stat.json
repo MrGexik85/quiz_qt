@@ -1,14 +1,18 @@
 {
-    "1" : {
-        "timestamp": 1632724274,
-        "right": 10,
-        "wrong": 5,
-        "total": 15
-    },
-    "2" : {
-        "timestamp": 1632726274,
-        "right": 12,
-        "wrong": 2,
-        "total": 14
-    }
+    "stats" : [
+        {
+            "id" : 1,
+            "timestamp": 1632724274,
+            "right": 10,
+            "wrong": 5,
+            "total": 15
+        },
+        {
+            "id" : 2,
+            "timestamp": 1632726274,
+            "right": 12,
+            "wrong": 2,
+            "total": 14
+        }
+    ]
 }

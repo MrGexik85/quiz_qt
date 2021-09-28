@@ -3,6 +3,14 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    statsFile = "stats.json";
+    questionsFile = "questions.xml";
+
+    // Check stats and questions files are exist
+    if ((checkFilesExistOrCreate(statsFile) && checkFilesExistOrCreate(questionsFile)) == false) {
+        exit(1);
+    }
+
     setStartMenuWgt();
 
     qDebug("mainWindow(constructor): Success");
@@ -32,6 +40,29 @@ void MainWindow::setStartMenuWgt() {
     qDebug("mainWindow(setStartMenuWgt): Success");
 }
 
+bool MainWindow::checkFilesExistOrCreate(QString &path_file) {
+    /*
+     *  Get file path, check file is exist, else create it
+     *
+     *  return: bool (success)
+    */
+    QFileInfo fileInfo(path_file);
+    if(fileInfo.exists() && fileInfo.isFile()) {
+        qDebug() << "mainWindow(checkFilesExistOrCreate):" << path_file << "is exist";
+        return true;
+    } else {
+        QFile file(path_file);
+        if (file.open(QIODevice::WriteOnly)) {
+            file.close();
+            qDebug() << "mainWindow(checkFilesExistOrCreate):" << path_file << "created";
+            return true;
+        } else {
+            qDebug() << "mainWindow(checkFilesExistOrCreate):" << path_file << "didnt create";
+            return false;
+        }
+    }
+}
+
 /* SLOTS */
 
 void MainWindow::onStartClicked(){
@@ -40,6 +71,7 @@ void MainWindow::onStartClicked(){
     *   show window with quiz
     */
 
+    // Проверку что xml существует
     qDebug("mainWindow(onStartClicked): Start btn clicked");
 }
 
