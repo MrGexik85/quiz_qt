@@ -71,6 +71,18 @@ void MainWindow::onStartClicked(){
     */
 
     // Проверку что xml существует
+
+    pQzWgt = new QuizWgt(this, questionsFile);
+    if(pQzWgt.isNull()) {
+        qDebug("mainWindow(onStartClicked): fail to init Quiz widget");
+        return;
+    }
+
+    connect(pQzWgt, SIGNAL(backEvent()), this, SLOT(setMainMenu()));
+
+    this->setCentralWidget(pQzWgt);
+    pMainMenuWgt.clear();
+
     qDebug("mainWindow(onStartClicked): Start btn clicked");
 }
 
@@ -79,6 +91,17 @@ void MainWindow::onAddClicked(){
     *   Action for add questions button clicked
     *   show window with funcs to add some questions
     */
+
+    pAddQuestionWgt = new AddQuestionWgt(this, questionsFile);
+    if(pAddQuestionWgt.isNull()) {
+        qDebug("mainWindow(onAddClicked): fail to init Add questions widget");
+        return;
+    }
+
+    connect(pAddQuestionWgt, SIGNAL(backEvent()), this, SLOT(setMainMenu()));
+
+    this->setCentralWidget(pAddQuestionWgt);
+    pMainMenuWgt.clear();
 
     qDebug("mainWindow(onAddClicked): Add btn clicked");
 }
@@ -93,7 +116,7 @@ void MainWindow::onDelClicked(){
         qDebug("mainWindow(onDelClicked): fail to init Delete questions widget");
         return;
     }
-    qDebug() << pStatisticsWgt;
+
     connect(pDelQuestionWgt, SIGNAL(backEvent()), this, SLOT(setMainMenu()));
 
     this->setCentralWidget(pDelQuestionWgt);

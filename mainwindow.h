@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow
 private:  
     QPointer<MainMenuWgt> pMainMenuWgt;
     QPointer<QuizWgt> pQzWgt;
-    QPointer<AddQuestionWgt> pAddQustionWgt;
+    QPointer<AddQuestionWgt> pAddQuestionWgt;
     QPointer<DelQuestionWgt> pDelQuestionWgt;
     QPointer<StatisticsWgt> pStatisticsWgt;
 
