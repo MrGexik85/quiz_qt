@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    //qDeleteAll(this->children());
     qDebug("mainWindow(destrucor): Succes");
 }
 
@@ -89,7 +88,16 @@ void MainWindow::onDelClicked(){
     *   Action for delete questions button clicked
     *   show window with funcs to delete some questions
     */
+    pDelQuestionWgt = new DelQuestionWgt(this, questionsFile);
+    if(pDelQuestionWgt.isNull()) {
+        qDebug("mainWindow(onDelClicked): fail to init Delete questions widget");
+        return;
+    }
+    qDebug() << pStatisticsWgt;
+    connect(pDelQuestionWgt, SIGNAL(backEvent()), this, SLOT(setMainMenu()));
 
+    this->setCentralWidget(pDelQuestionWgt);
+    pMainMenuWgt.clear();
     qDebug("mainWindow(onDelClicked): Del btn clicked");
 }
 
@@ -101,19 +109,23 @@ void MainWindow::onStatisticsClicked(){
     qDebug("mainWindow(onStatisticsClicked): Statistics btn clicked");
 
     pStatisticsWgt = new StatisticsWgt(this, statsFile);
-    if(pStatisticsWgt == nullptr) {
+    if(pStatisticsWgt.isNull()) {
         qDebug("mainWindow(onStatisticsClicked): fail to init Statistics widget");
         return;
     }
     connect(pStatisticsWgt, SIGNAL(backEvent()), this, SLOT(setMainMenu()));
 
     this->setCentralWidget(pStatisticsWgt);
-    delete pMainMenuWgt;
+    pMainMenuWgt.clear();
 }
 
 void MainWindow::setMainMenu() {
-    QWidget *tmp = this->centralWidget();
+    /*
+     *
+    */
+
+    QPointer<QWidget> tmp(this->centralWidget());
     setStartMenuWgt();
-    delete tmp;
+    tmp.clear();
 }
 

@@ -13,11 +13,11 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:  
-    MainMenuWgt *pMainMenuWgt = nullptr;
-    QuizWgt *pQzWgt = nullptr;
-    AddQuestionWgt *pAddQustionWgt = nullptr;
-    DelQuestionWgt *pDelQuestionWgt = nullptr;
-    StatisticsWgt *pStatisticsWgt = nullptr;
+    QPointer<MainMenuWgt> pMainMenuWgt;
+    QPointer<QuizWgt> pQzWgt;
+    QPointer<AddQuestionWgt> pAddQustionWgt;
+    QPointer<DelQuestionWgt> pDelQuestionWgt;
+    QPointer<StatisticsWgt> pStatisticsWgt;
 
     QString statsFile;
     QString questionsFile;

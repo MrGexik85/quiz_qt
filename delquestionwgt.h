@@ -9,12 +9,20 @@ class DelQuestionWgt : public QWidget
     Q_OBJECT
 private:
     QString filename = "";
+    QTableView *pQuestionsTable = nullptr;
+    QStringListModel *pDataModel = nullptr;
+    QPushButton *pBackBtn = nullptr;
+    QPushButton *pDelBtn = nullptr;
 public:
     explicit DelQuestionWgt(QWidget *parent = nullptr, QString questFile = "");
     ~DelQuestionWgt();
+
+private slots:
+    void backBtnClicked();
+    void delBtnClicked();
 signals:
     void backEvent();
-    void YuraGey();
+
 };
 
 #endif // DELQUESTIONWGT_H
