@@ -11,8 +11,12 @@ private:
     QString filename = "";
     QTableView *pQuestionsTable = nullptr;
     QStringListModel *pDataModel = nullptr;
+
     QPushButton *pBackBtn = nullptr;
     QPushButton *pDelBtn = nullptr;
+
+    void initTable();
+    void initButtons();
 public:
     explicit DelQuestionWgt(QWidget *parent = nullptr, QString questFile = "");
     ~DelQuestionWgt();

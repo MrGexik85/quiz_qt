@@ -4,11 +4,13 @@ DelQuestionWgt::DelQuestionWgt(QWidget *parent, QString questFile) :
     QWidget(parent), filename(questFile)
 {
     QVBoxLayout *layout = new QVBoxLayout();
-    pQuestionsTable = new QTableView(this);
-    pDataModel = new QStringListModel(QStringList() << "Коммит бомба"
-                                                       "Честно говоря");
-    pQuestionsTable->setModel(pDataModel);
+
+    initTable();
+    initButtons();
+
     layout->addWidget(pQuestionsTable);
+    layout->addWidget(pDelBtn);
+    layout->addWidget(pBackBtn);
 
     this->setLayout(layout);
 
@@ -20,6 +22,40 @@ DelQuestionWgt::~DelQuestionWgt() {
     qDebug() << "delQuestionWgt(destructor): Success";
 }
 
+void DelQuestionWgt::initTable() {
+    /*
+    *   Initialize TableView and dataModel for this view
+    *
+    *   return: void
+    */
+
+    pQuestionsTable = new QTableView(this);
+    pQuestionsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    pDataModel = new QStringListModel(this);
+    pDataModel->setStringList(QStringList() << "Считать нормальными?"
+                              << "Купить хлеба?");
+    pQuestionsTable->setModel(pDataModel);
+
+    qDebug() << "delQuestionWgt(initTable): Success";
+}
+
+void DelQuestionWgt::initButtons() {
+    /*
+     *  Initialize buttons and connect signals to slots
+     *
+     * return: void
+    */
+
+    pBackBtn = new QPushButton("Назад", this);
+    connect(pBackBtn, SIGNAL(clicked()), this, SLOT(backBtnClicked()));
+
+    pDelBtn = new QPushButton("Удалить вопрос", this);
+    connect(pDelBtn, SIGNAL(clicked()), this, SLOT(delBtnClicked()));
+
+    qDebug() << "delQuestionWgt(initButtons): Success";
+}
+
 /* SLOTS */
 void DelQuestionWgt::backBtnClicked() {
     /*
@@ -28,6 +64,7 @@ void DelQuestionWgt::backBtnClicked() {
      *  return: void
     */
     emit backEvent();
+    qDebug() << "delQuestionWgt(backBtnClicked): Success";
 }
 
 void DelQuestionWgt::delBtnClicked() {
@@ -36,4 +73,6 @@ void DelQuestionWgt::delBtnClicked() {
      *
      *  return: void
     */
+
+    qDebug() << "delQuestionWgt(delBtnClicked): Success";
 }
