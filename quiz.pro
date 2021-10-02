@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     addquestionwgt.cpp \
     delquestionwgt.cpp \
+    formwgt.cpp \
     main.cpp \
     mainmenuwgt.cpp \
     mainwindow.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 HEADERS += \
     addquestionwgt.h \
     delquestionwgt.h \
+    formwgt.h \
     mainmenuwgt.h \
     mainwindow.h \
     quizwgt.h \
