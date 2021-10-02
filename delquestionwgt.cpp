@@ -31,6 +31,7 @@ void DelQuestionWgt::initTable() {
 
     pQuestionsTable = new QTableView(this);
     pQuestionsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    pQuestionsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     pDataModel = new QStringListModel(this);
     pDataModel->setStringList(QStringList() << "Считать нормальными?"
