@@ -67,6 +67,19 @@ void AddQuestionWgt::onSaveBtnClicked() {
      *
      *  return: void
     */
-
     qDebug() << "addQuestionWgt(onSaveBtnClicked): Button clicked";
+    if(pFormWgt->isFieldsValid()) {
+        QString question = pFormWgt->getQuestionString();
+        QVector<bool> answRight = pFormWgt->getRightAnsw();
+        QStringList answStrList = pFormWgt->getAnsws();
+
+        QMessageBox::about(this, "Сохранить вопрос", "Успешно");
+
+        pFormWgt->clearFields();
+        // Сохранить в XML
+    } else {
+        QMessageBox::about(this, "Сохранить вопрос", "Ошибка, заполните все поля");
+    }
+
+
 }
