@@ -1,13 +1,12 @@
 #include "statisticswgt.h"
 
-StatisticsWgt::StatisticsWgt(QWidget *parent, QString dataFile) : QWidget(parent)
+StatisticsWgt::StatisticsWgt(QWidget *parent, QString dataFile) :
+    QWidget(parent), filename(dataFile)
 {
-    filename = dataFile;
     pBackBtn = new QPushButton("Назад", this);
     connect(pBackBtn, SIGNAL(clicked()), this, SLOT(backBtnClicked()));
 
     pDataTable = getTable();
-    pDataTable->setEnabled(false);
 
     QVBoxLayout *pLayout = new QVBoxLayout();
     pLayout->addWidget(pDataTable);
@@ -116,6 +115,8 @@ QTableWidget* StatisticsWgt::getTable() {
         qDebug() << "statisticsWgt(getTable): insert item in table:" << data[i];
     }
     table->setHorizontalHeaderLabels(labels);
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    table->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     qDebug() << "statisticsWgt(getTable): Success init statistics table";
     return table;
