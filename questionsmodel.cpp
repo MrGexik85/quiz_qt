@@ -43,11 +43,13 @@ bool QuestionsModel::saveDataTo(QString filename) {
 }
 
 bool QuestionsModel::deleteRecord(int index) {
-    /* (in work)
-     *
+    /*
+     *  Return question from data
      *
      * return: bool (success)
     */
+    data.remove(index);
+
     qDebug() << "questionsModel(deleteRecord): Success deleted from:" << index << "index";
     return true;
 }
