@@ -1,9 +1,11 @@
 #include "delquestionwgt.h"
 
 DelQuestionWgt::DelQuestionWgt(QWidget *parent, QString questFile) :
-    QWidget(parent), filename(questFile)
+    QWidget(parent)
 {
     QVBoxLayout *layout = new QVBoxLayout();
+
+    questionsInst = new QuestionsModel(questFile);
 
     initTable();
     initButtons();
@@ -18,7 +20,7 @@ DelQuestionWgt::DelQuestionWgt(QWidget *parent, QString questFile) :
 }
 
 DelQuestionWgt::~DelQuestionWgt() {
-    // Save local questions list to xml file
+    delete questionsInst;
     qDebug() << "delQuestionWgt(destructor): Success";
 }
 
@@ -34,8 +36,7 @@ void DelQuestionWgt::initTable() {
     pQuestionsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     pDataModel = new QStringListModel(this);
-    pDataModel->setStringList(QStringList() << "Считать нормальными?"
-                              << "Купить хлеба?");
+    pDataModel->setStringList(questionsInst->getQuestionsHead());
     pQuestionsTable->setModel(pDataModel);
 
     qDebug() << "delQuestionWgt(initTable): Success";
@@ -74,6 +75,10 @@ void DelQuestionWgt::delBtnClicked() {
      *
      *  return: void
     */
-
+    int index = pQuestionsTable->currentIndex().row(); // Выбрать индекс
+    if(index >= 0 && index < questionsInst->size()){
+        pDataModel->removeRow(index);
+        questionsInst->deleteRecord(index);
+    }
     qDebug() << "delQuestionWgt(delBtnClicked): Success";
 }

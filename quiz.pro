@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainmenuwgt.cpp \
     mainwindow.cpp \
+    questionsmodel.cpp \
     quizwgt.cpp \
     statisticswgt.cpp
 
@@ -24,6 +25,7 @@ HEADERS += \
     formwgt.h \
     mainmenuwgt.h \
     mainwindow.h \
+    questionsmodel.h \
     quizwgt.h \
     statisticswgt.h
 

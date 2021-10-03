@@ -3,14 +3,16 @@
 
 #include <QWidget>
 #include <QtWidgets>
+#include "questionsmodel.h"
 
 class DelQuestionWgt : public QWidget
 {
     Q_OBJECT
 private:
-    QString filename = "";
     QTableView *pQuestionsTable = nullptr;
     QStringListModel *pDataModel = nullptr;
+
+    QuestionsModel *questionsInst;
 
     QPushButton *pBackBtn = nullptr;
     QPushButton *pDelBtn = nullptr;
