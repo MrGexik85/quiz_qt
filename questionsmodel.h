@@ -7,6 +7,12 @@ struct Question {
     QString questionHeader;
     QVector<QString> answs;
     QVector<bool> rightAnsws;
+    Question(QString questionHeader, QVector<QString> answs, QVector<bool> rightAnsws) {
+        this->questionHeader = questionHeader;
+        this->answs = answs;
+        this->rightAnsws = rightAnsws;
+    }
+    Question() : questionHeader("") {}
 };
 
 class QuestionsModel

@@ -26,6 +26,8 @@ bool QuestionsModel::readDataFrom(QString filename) {
      *
      *  return: bool (Success)
     */
+    data.push_back(Question("Привет миру", QVector<QString>(4, "test1"), QVector<bool>(4, false)));
+    data.push_back(Question("Всем поки", QVector<QString>(4, "test2"), QVector<bool>(4, false)));
 
     qDebug() << "questionsModel(readDataFrom): Success read from:" << filename;
     return true;
@@ -33,10 +35,40 @@ bool QuestionsModel::readDataFrom(QString filename) {
 
 bool QuestionsModel::saveDataTo(QString filename) {
     /* (in work)
-     *
+     *  Method performing data to XML file
      *
      *  return: bool (Success)
     */
+    QFile file(filename);
+    if(file.open(QIODevice::WriteOnly) == false) {
+        qDebug() << "questionsModel(saveDataTo): Can't open file:" << filename;
+        return false;
+    }
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);
+    xmlWriter.writeStartDocument();
+    xmlWriter.writeStartElement("body");
+
+    // Write from buffer data to xml file
+    for(int i = 0; i < data.size(); i++) {
+        xmlWriter.writeStartElement("question");
+            xmlWriter.writeStartElement("content");
+            xmlWriter.writeCharacters(data[i].questionHeader);
+            xmlWriter.writeEndElement();
+            for(int j = 0; j < data[i].answs.size(); j++) {
+                xmlWriter.writeStartElement("answer");
+                xmlWriter.writeAttribute("right", data[i].rightAnsws[j] ? "true" : "false");
+                xmlWriter.writeCharacters(data[i].answs[j]);
+                xmlWriter.writeEndElement();
+            }
+        xmlWriter.writeEndElement();
+    }
+
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndDocument();
+    file.close();
+
+
 
     qDebug() << "questionsModel(saveDataTo): Success save to:" << filename;
     return true;
