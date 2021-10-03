@@ -22,19 +22,55 @@ bool QuestionsModel::isOpened() {
 
 bool QuestionsModel::readDataFrom(QString filename) {
     /* (in work)
-     *
+     *  Method performing XML data to buffer data
      *
      *  return: bool (Success)
     */
-    data.push_back(Question("Привет миру", QVector<QString>(4, "test1"), QVector<bool>(4, false)));
-    data.push_back(Question("Всем поки", QVector<QString>(4, "test2"), QVector<bool>(4, false)));
+    QFile file(filename);
+    if(file.open(QIODevice::ReadOnly) == false) {
+        qDebug() << "questionsModel(readDataFrom): Can't open file:" << filename;
+        return false;
+    }
+    QXmlStreamReader xmlReader(&file);
+    while(!xmlReader.atEnd()) {
+        if(xmlReader.isStartElement()) {
+            if(xmlReader.name().toString() == "body") {
+                xmlReader.readNextStartElement();
+                continue;
+            }
+            if(xmlReader.name().toString() == "question") {
+                xmlReader.readNextStartElement();
+                continue;
+            }
+            if(xmlReader.name().toString() == "content") {
+                Question tmp;
+                tmp.questionHeader = xmlReader.readElementText();
+                xmlReader.readNextStartElement();
+                while(xmlReader.name().toString() == "answer") {
+                    foreach (const QXmlStreamAttribute &attr, xmlReader.attributes()) {
+                        if(attr.name().toString() == "right") {
+                            QString attrValue = attr.value().toString();
+                            tmp.rightAnsws.push_back(attrValue == "true");
+                        }
+                    }
+                    tmp.answs.push_back(xmlReader.readElementText());
+                    xmlReader.readNextStartElement();
+                }
+                qDebug() << "questionsModel(readDataFrom): read new question element";
+                data.push_back(tmp);
+            }
+        }
+        xmlReader.readNextStartElement();
+    }
+
+    file.close();
 
     qDebug() << "questionsModel(readDataFrom): Success read from:" << filename;
     return true;
 }
 
 bool QuestionsModel::saveDataTo(QString filename) {
-    /* (in work)
+    /*
      *  Method performing data to XML file
      *
      *  return: bool (Success)
@@ -49,7 +85,7 @@ bool QuestionsModel::saveDataTo(QString filename) {
     xmlWriter.writeStartDocument();
     xmlWriter.writeStartElement("body");
 
-    // Write from buffer data to xml file
+    // Write question from buffer data to xml file
     for(int i = 0; i < data.size(); i++) {
         xmlWriter.writeStartElement("question");
             xmlWriter.writeStartElement("content");
@@ -67,8 +103,6 @@ bool QuestionsModel::saveDataTo(QString filename) {
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
     file.close();
-
-
 
     qDebug() << "questionsModel(saveDataTo): Success save to:" << filename;
     return true;
