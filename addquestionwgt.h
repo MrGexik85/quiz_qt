@@ -4,12 +4,13 @@
 #include <QWidget>
 #include <QtWidgets>
 #include "formwgt.h"
+#include "questionsmodel.h"
 
 class AddQuestionWgt : public QWidget
 {
     Q_OBJECT
 private:
-    QString filename;
+    QuestionsModel *pQuestionsModel;
 
     FormWgt *pFormWgt = nullptr;
     QPushButton *pBackBtn = nullptr;

@@ -1,11 +1,12 @@
 #include "addquestionwgt.h"
 
 AddQuestionWgt::AddQuestionWgt(QWidget *parent, QString filename) :
-    QWidget(parent), filename(filename)
+    QWidget(parent)
 {
-
     initForm();
     initButtons();
+
+    pQuestionsModel = new QuestionsModel(filename);
 
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(pFormWgt);
@@ -18,7 +19,7 @@ AddQuestionWgt::AddQuestionWgt(QWidget *parent, QString filename) :
 }
 
 AddQuestionWgt::~AddQuestionWgt() {
-
+    delete pQuestionsModel;
     qDebug() << "addQuestionWgt(destructor): Success";
 }
 
@@ -76,6 +77,7 @@ void AddQuestionWgt::onSaveBtnClicked() {
         QMessageBox::about(this, "Сохранить вопрос", "Успешно");
 
         pFormWgt->clearFields();
+        pQuestionsModel->addNewRecord(question, answStrList.toVector(), answRight);
         // Сохранить в XML
     } else {
         QMessageBox::about(this, "Сохранить вопрос", "Ошибка, заполните все поля");
