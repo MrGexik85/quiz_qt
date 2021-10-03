@@ -53,11 +53,18 @@ bool QuestionsModel::deleteRecord(int index) {
 }
 
 bool QuestionsModel::addNewRecord(QString header, QVector<QString> answs, QVector<bool> rightAnsws) {
-    /* (in work)
+    /*
      *  Create Question object and save to data
      *
      *  return: bool (success)
     */
+    Question question;
+    question.questionHeader = header;
+    question.answs = answs;
+    question.rightAnsws = rightAnsws;
+
+    data.push_back(question);
+
     qDebug() << "questionsModel(deleteRecord): Success added";
     return true;
 }
