@@ -21,7 +21,7 @@ bool QuestionsModel::isOpened() {
 }
 
 bool QuestionsModel::readDataFrom(QString filename) {
-    /* (in work)
+    /*
      *  Method performing XML data to buffer data
      *
      *  return: bool (Success)

@@ -77,8 +77,8 @@ void AddQuestionWgt::onSaveBtnClicked() {
         QMessageBox::about(this, "Сохранить вопрос", "Успешно");
 
         pFormWgt->clearFields();
+        // Save to XML
         pQuestionsModel->addNewRecord(question, answStrList.toVector(), answRight);
-        // Сохранить в XML
     } else {
         QMessageBox::about(this, "Сохранить вопрос", "Ошибка, заполните все поля");
     }
